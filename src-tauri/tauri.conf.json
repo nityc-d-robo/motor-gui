@@ -5,12 +5,11 @@
   "identifier": "com.motor-gui.app",
   "build": {
     "beforeDevCommand": "pnpm dev",
+    "devUrl": "http://localhost:1420",
     "beforeBuildCommand": "pnpm build",
-    "devUrl": "http://localhost:5173",
     "frontendDist": "../dist"
   },
   "app": {
-    "withGlobalTauri": true,
     "windows": [
       {
         "title": "motor-gui",
