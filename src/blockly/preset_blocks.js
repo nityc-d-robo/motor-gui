@@ -208,3 +208,13 @@ export const lists = {
         }
     ]
 }
+export const variables = {
+    "kind": "category",
+    "name": "Variables",
+    "custom": "VARIABLE"
+};
+export const functions = {
+    "kind": "category",
+    "name": "Functions",
+    "custom": "PROCEDURE"
+}

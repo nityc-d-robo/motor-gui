@@ -14,16 +14,8 @@ const toolbox = {
     Preset.math,
     Preset.text,
     Preset.lists,
-    {
-      "kind": "category",
-      "name": "Variables",
-      "custom": "VARIABLE"
-    },
-    {
-      "kind": "category",
-      "name": "Functions",
-      "custom": "PROCEDURE"
-    }
+    Preset.variables,
+    Preset.functions
   ]
 }
 
