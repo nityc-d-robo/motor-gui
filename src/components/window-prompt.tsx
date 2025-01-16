@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { useAtom } from "jotai";
-import { promptStateAtom } from "./atom";
+import { promptStateAtom } from "../atom";
 
 import { Button } from "@/components/ui/button"
 import {
@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 
-export default function WindowPrompt({ message, defaultValue, callback }) {
+export function WindowPrompt({ message, defaultValue, callback }: { message: string, defaultValue: string, callback: (p1: string | null) => void }) {
   const [value, setValue] = useState(defaultValue);
   const [isOpenPrompt, setIsOpenPrompt] = useAtom(promptStateAtom);
   return (
