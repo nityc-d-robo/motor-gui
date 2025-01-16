@@ -27,30 +27,26 @@ export default function PlaygroundPage() {
   });
 
   return (
-    <>
-      <div className="md:hidden">
+    <div className="hidden flex flex-col flex-grow md:flex">
+      <header className="container mx-auto flex flex-col items-start justify-between space-y-2 py-4 sm:flex-row sm:items-center sm:space-y-0 md:h-16">
+        <h2 className="text-lg font-semibold">motor_lib Playground</h2>
+        <PresetRun />
+      </header>
+      <Separator />
+      <div className="container mx-auto flex flex-col flex-grow py-6">
+        <div className="flex flex-row flex-grow space-y-4">
+          <BlocklyWorkspace
+            className='w-full h-full'
+            workspaceConfiguration={{}}
+            toolboxConfiguration={toolbox}
+          />
+        </div>
+        <WindowPrompt
+          message={message}
+          defaultValue={defaultValue}
+          callback={callbackRef.current}
+        />
       </div>
-      <div className="hidden flex flex-col flex-grow md:flex p-5 m-10 border-2 rounded-2xl">
-        <div className="container mx-auto flex flex-col items-start justify-between space-y-2 py-4 sm:flex-row sm:items-center sm:space-y-0 md:h-16">
-          <h2 className="text-lg font-semibold">motor_lib Playground</h2>
-          <PresetRun />
-        </div>
-        <Separator />
-        <div className="container mx-auto flex flex-col flex-grow py-6">
-            <div className="flex flex-row flex-grow space-y-4">
-              <BlocklyWorkspace
-                className='w-full h-full'
-                workspaceConfiguration={{}}
-                toolboxConfiguration={toolbox}
-              />
-            </div>
-            <WindowPrompt
-              message={message}
-              defaultValue={defaultValue}
-              callback={callbackRef.current}
-            />
-          </div>
-        </div>
-    </>
+    </div>
   )
 }
