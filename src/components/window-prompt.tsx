@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
-import { useAtom } from "jotai";
-import { promptStateAtom } from "../atom";
+import * as Blockly from "blockly/core"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -13,11 +12,21 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 
-export function WindowPrompt({ message, defaultValue, callback }: { message: string, defaultValue: string, callback: (p1: string | null) => void }) {
-  const [value, setValue] = useState(defaultValue);
-  const [isOpenPrompt, setIsOpenPrompt] = useAtom(promptStateAtom);
+export function WindowPrompt() {
+  const [promptState, setPromptState] = useState(false);
+  const [message, setMessage] = useState('');
+  const [value, setValue] = useState('');
+  const callbackRef = useRef<(p1: string | null) => void>(() => {});
+
+  Blockly.dialog.setPrompt((message, defaultValue, callback_) => {
+    setMessage(message);
+    setValue(defaultValue);
+    callbackRef.current = callback_;
+    setPromptState(true);
+  });
+
   return (
-    <Dialog open={isOpenPrompt} onOpenChange={setIsOpenPrompt}>
+    <Dialog open={promptState} onOpenChange={setPromptState}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle>{message}</DialogTitle>
@@ -26,12 +35,12 @@ export function WindowPrompt({ message, defaultValue, callback }: { message: str
           <div className="grid flex-1 gap-2">
             <Input
               id="link"
-              defaultValue={defaultValue}
+              defaultValue={value}
               onChange={(e) => setValue(e.target.value)}
             />
           </div>
           <DialogClose asChild>
-            <Button type="submit" size="sm" onClick={() => callback(value)}>
+            <Button type="submit" size="sm" onClick={() => callbackRef.current(value)}>
               <span>Submit</span>
             </Button>
           </DialogClose>

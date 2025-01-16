@@ -1,7 +1,3 @@
-import { useState, useRef } from "react";
-import { useSetAtom } from "jotai";
-import { promptStateAtom } from "./atom";
-
 import { Separator } from "@/components/ui/separator"
 
 import { PresetRun } from "./components/preset-run"
@@ -13,18 +9,7 @@ import { BlocklyWorkspace } from 'react-blockly';
 import { toolbox } from './blockly/toolbox';
 
 export default function PlaygroundPage() {
-  const [message, setMessage] = useState('');
-  const [defaultValue, setDefaultValue] = useState('');
-  const setPromptState = useSetAtom(promptStateAtom);
-  const callbackRef = useRef<(p1: string | null) => void>(() => {});
-
   Blockly.setLocale(Ja);
-  Blockly.dialog.setPrompt((message, defaultValue, callback_) => {
-    setMessage(message);
-    setDefaultValue(defaultValue);
-    setPromptState(true);
-    callbackRef.current = callback_;
-  });
 
   return (
     <div className="hidden flex flex-col flex-grow md:flex">
@@ -41,11 +26,7 @@ export default function PlaygroundPage() {
             toolboxConfiguration={toolbox}
           />
         </div>
-        <WindowPrompt
-          message={message}
-          defaultValue={defaultValue}
-          callback={callbackRef.current}
-        />
+        <WindowPrompt />
       </div>
     </div>
   )
