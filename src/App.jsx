@@ -22,7 +22,7 @@ const toolbox = {
 }
 
 function App() {
-  const [xml, setXml] = useState();
+  const [programJson, setProgramJson] = useState();
   const [message, setMessage] = useState('');
   const [defaultValue, setDefaultValue] = useState('');
   const setPromptState = useSetAtom(promptStateAtom);
@@ -36,19 +36,19 @@ function App() {
   });
 
   return (
-    <main className="container">
+    <main className="h-screen container grid grid-rows-4 grid-cols-4">
       <BlocklyWorkspace
-        className="h-screen"
+        className="row-span-3 col-span-3"
         toolboxConfiguration={toolbox}
-        initialXml={xml}
-        onXmlChange={setXml}
+        initialJson={programJson}
+        onJsonChange={setProgramJson}
       />
       <WindowPrompt 
         message={message}
         defaultValue={defaultValue}
         callback={callbackRef.current}
       />
-      {console.log(xml) || (<div/>) /* XMLの内容を知る */}
+      {console.log(programJson) || (<div/>) /* JSONの内容を知る */}
     </main>
   );
 }
