@@ -1,0 +1,35 @@
+.injectionDiv {
+    border-radius: 0.75rem;
+}
+.blocklyMainBackground {
+    rx: 0.75rem;
+}
+.blocklyToolboxDiv {
+    padding: 0.375rem;
+    background-color: hsl(var(--sidebar-background));
+    border-radius: 0.75rem 0 0 0.75rem;
+    border: 1px solid hsl(var(--border));
+    z-index: 1;
+}
+.blocklyFlyoutBackground {
+    fill: hsl(var(--sidebar-background));
+    stroke: hsl(var(--border));
+    stroke-width: 2px;
+}
+.blocklyToolboxCategory:hover .blocklyTreeLabel {
+    background-color: #e0e0e0;
+}
+.blocklyToolboxCategory[aria-selected="true"] .blocklyTreeLabel {
+    background-color: #e0e0e0;
+}
+
+.blocklyTreeLabel {
+    width: 100%;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+    border-radius: 0.3rem;
+}
+
+
