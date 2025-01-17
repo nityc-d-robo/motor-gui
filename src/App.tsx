@@ -1,13 +1,13 @@
-import { Separator } from "@/components/ui/separator";
+import { Separator } from '@/components/ui/separator';
 
-import { PresetRun } from "./components/preset-run";
-import { PresetSave } from "./components/preset-save";
-import { WindowPrompt } from "./components/window-prompt";
+import { PresetRun } from './components/preset-run';
+import { PresetSave } from './components/preset-save';
+import { WindowPrompt } from './components/window-prompt';
 
-import * as Blockly from "blockly/core";
-import * as Ja from "blockly/msg/ja";
-import { BlocklyWorkspace } from "react-blockly";
-import { toolbox } from "./blockly/toolbox";
+import * as Blockly from 'blockly/core';
+import * as Ja from 'blockly/msg/ja';
+import { BlocklyWorkspace } from 'react-blockly';
+import { toolbox } from './blockly/toolbox';
 
 export default function PlaygroundPage() {
   Blockly.setLocale(Ja);

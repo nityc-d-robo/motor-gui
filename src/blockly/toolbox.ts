@@ -1,7 +1,7 @@
-import * as Preset from "./preset_blocks";
+import * as Preset from './preset_blocks';
 
 export const toolbox = {
-  kind: "categoryToolbox",
+  kind: 'categoryToolbox',
   contents: [
     Preset.control,
     Preset.logic,

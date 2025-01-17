@@ -1,21 +1,21 @@
-import { useState, useRef } from "react";
+import { useState, useRef } from 'react';
 
-import * as Blockly from "blockly/core";
+import * as Blockly from 'blockly/core';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogClose,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
+} from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
 
 export function WindowPrompt() {
   const [promptState, setPromptState] = useState(false);
-  const messageRef = useRef("");
-  const valueRef = useRef("");
+  const messageRef = useRef('');
+  const valueRef = useRef('');
   const callbackRef = useRef<(p1: string | null) => void>(() => {});
 
   Blockly.dialog.setPrompt((message, defaultValue, callback_) => {

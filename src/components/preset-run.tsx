@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { ChevronsUpDown } from "lucide-react";
-import SyntaxHighlighter from "react-syntax-highlighter";
+import { ChevronsUpDown } from 'lucide-react';
+import SyntaxHighlighter from 'react-syntax-highlighter';
 
-import * as Blockly from "blockly/core";
-import { javascriptGenerator } from "blockly/javascript";
+import * as Blockly from 'blockly/core';
+import { javascriptGenerator } from 'blockly/javascript';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogClose,
@@ -15,13 +15,13 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
+} from '@/components/ui/dialog';
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@/components/ui/collapsible";
-import { Label } from "@/components/ui/label";
+} from '@/components/ui/collapsible';
+import { Label } from '@/components/ui/label';
 
 function PreviewCodeCollapse({ program }: { program: string }) {
   const [isCodeOpen, setIsCodeOpen] = useState(false);
@@ -70,19 +70,19 @@ function StdOutCollapse() {
         </div>
       </CollapsibleTrigger>
       <CollapsibleContent className="flex flex-col max-h-4/5">
-        <div className="max-h-[30vh] whitespace-pre-wrap overflow-y-auto border-2 rounded-sm p-2">{`${standardOutput.join("\n")}`}</div>
+        <div className="max-h-[30vh] whitespace-pre-wrap overflow-y-auto border-2 rounded-sm p-2">{`${standardOutput.join('\n')}`}</div>
       </CollapsibleContent>
     </Collapsible>
   );
 }
 
 export function PresetRun() {
-  const [program, setProgram] = useState<string>("");
+  const [program, setProgram] = useState<string>('');
   function onClickRun() {
     setProgram(javascriptGenerator.workspaceToCode());
   }
   function onClickExecute() {
-    Blockly.dialog.alert("test");
+    Blockly.dialog.alert('test');
   }
   return (
     <Dialog>
