@@ -3,8 +3,10 @@ import { useState } from 'react';
 import { ChevronsUpDown } from 'lucide-react';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 
-import * as Blockly from 'blockly/core';
 import { javascriptGenerator } from 'blockly/javascript';
+
+import Interpreter from 'js-interpreter';
+import { initApi, setPrint } from '../blockly/js-interpreter';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -51,7 +53,7 @@ function PreviewCodeCollapse({ program }: { program: string }) {
 function StdOutCollapse() {
   const [isCodeOpen, setIsCodeOpen] = useState(false);
   const [standardOutput, setStandardOutput] = useState<string[]>([]);
-  Blockly.dialog.setAlert((message) => {
+  setPrint((message: string) => {
     setStandardOutput(standardOutput.concat([message]));
   });
   return (
@@ -82,7 +84,8 @@ export function PresetRun() {
     setProgram(javascriptGenerator.workspaceToCode());
   }
   function onClickExecute() {
-    Blockly.dialog.alert('test');
+    const interpreter = new Interpreter(program, initApi);
+    interpreter.run();
   }
   return (
     <Dialog>
