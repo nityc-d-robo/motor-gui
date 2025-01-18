@@ -79,7 +79,7 @@ function StdOutCollapse() {
 }
 
 export function PresetRun() {
-  const [program, setProgram] = useState<string>('');
+  const [program, setProgram] = useState('');
   function onClickRun() {
     setProgram(javascriptGenerator.workspaceToCode());
   }

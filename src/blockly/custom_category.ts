@@ -5,7 +5,7 @@ class CustomCategory extends Blockly.ToolboxCategory {
      * Constructor for a custom category.
      * @override
      */
-  constructor(categoryDef, toolbox, opt_parent) {
+  constructor(categoryDef: Blockly.utils.toolbox.CategoryInfo, toolbox: Blockly.IToolbox, opt_parent?: Blockly.ICollapsibleToolboxItem) {
     super(categoryDef, toolbox, opt_parent);
   }
 
@@ -22,7 +22,7 @@ class CustomCategory extends Blockly.ToolboxCategory {
   }
 
   /** @override  */
-  createLabelDom_(name) {
+  createLabelDom_(name: string) {
     const labelDom = document.createElement('button');
     labelDom.classList.add('blocklyTreeLabel');
     labelDom.textContent = name;
@@ -30,10 +30,10 @@ class CustomCategory extends Blockly.ToolboxCategory {
   }
 
   /** @override */
-  setSelected(isSelected) {
+  setSelected(isSelected: boolean) {
     // JSでのcss書き換えは全て削除
     // This is used for accessibility purposes.
-    Blockly.utils.aria.setState(/** @type {!Element} */ (this.htmlDiv_),
+    Blockly.utils.aria.setState((this.htmlDiv_!),
       Blockly.utils.aria.State.SELECTED, isSelected);
   }
 }
