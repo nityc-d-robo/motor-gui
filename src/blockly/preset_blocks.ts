@@ -1,6 +1,6 @@
 export const control = {
   kind: 'category',
-  name: 'Control',
+  name: '制御',
   contents: [
     {
       kind: 'block',
@@ -26,7 +26,7 @@ export const control = {
 };
 export const logic = {
   kind: 'category',
-  name: 'Logic',
+  name: '論理',
   contents: [
     {
       kind: 'block',
@@ -56,7 +56,7 @@ export const logic = {
 };
 export const math = {
   kind: 'category',
-  name: 'Math',
+  name: '数値計算',
   contents: [
     {
       kind: 'block',
@@ -114,7 +114,7 @@ export const math = {
 };
 export const text = {
   kind: 'category',
-  name: 'Text',
+  name: '文字列',
   contents: [
     {
       kind: 'block',
@@ -164,7 +164,7 @@ export const text = {
 };
 export const lists = {
   kind: 'category',
-  name: 'Lists',
+  name: '配列',
   contents: [
     {
       kind: 'block',
@@ -210,11 +210,11 @@ export const lists = {
 };
 export const variables = {
   kind: 'category',
-  name: 'Variables',
+  name: '変数',
   custom: 'VARIABLE',
 };
 export const functions = {
   kind: 'category',
-  name: 'Functions',
+  name: '関数',
   custom: 'PROCEDURE',
 };

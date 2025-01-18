@@ -10,5 +10,23 @@ export const toolbox = {
     Preset.lists,
     Preset.variables,
     Preset.functions,
+    {
+      kind: 'category',
+      name: 'd-robo',
+      contents: [
+        {
+          kind: 'block',
+          type: 'motor_pwm',
+        },
+        {
+          kind: 'block',
+          type: 'solenoid_state',
+        },
+        {
+          kind: 'block',
+          type: 'blmd_power',
+        },
+      ],
+    },
   ],
 };
