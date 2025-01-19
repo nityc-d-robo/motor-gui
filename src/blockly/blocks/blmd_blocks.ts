@@ -14,9 +14,9 @@ Blockly.Blocks['blmd_speed'] = {
       .appendField('BLMD')
       .appendField(new Blockly.FieldNumber(0, 0, 15), 'address')
       .appendField('の')
-      .appendField(new Blockly.FieldNumber(0, 0, 3), 'port')
+      .appendField(new Blockly.FieldNumber(0, 0, 3), 'controller_id')
       .appendField('番モーターを')
-      .appendField(new Blockly.FieldNumber(0, -16384, 16384), 'speed')
+      .appendField(new Blockly.FieldNumber(0, -16384, 16384), 'velocity')
       .appendField('RPMで回す');
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
@@ -28,11 +28,11 @@ Blockly.Blocks['blmd_speed'] = {
 };
 javascriptGenerator.forBlock['blmd_speed'] = function (block) {
   const number_address = block.getFieldValue('address');
-  const number_port = block.getFieldValue('port');
-  const number_speed = block.getFieldValue('speed');
-  const code = `blmd_speed(${number_address}, ${number_port}, ${number_speed});\n`;
+  const number_controller_id = block.getFieldValue('controller_id');
+  const number_velocity = block.getFieldValue('velocity');
+  const code = `blmd_speed(${number_address}, ${number_controller_id}, ${number_velocity});\n`;
   return code;
 };
-export const blmd_speed_wrapper = (address: number, port: number, speed: number) => {
-  invoke('blmd_speed', { address: address, port: port, speed: speed });
+export const blmd_speed_wrapper = (address: number, controller_id: number, velocity: number) => {
+  invoke('blmd_speed', { address: address, controller_id: controller_id, velocity: velocity });
 };
