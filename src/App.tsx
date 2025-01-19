@@ -13,7 +13,7 @@ export default function PlaygroundPage() {
   Blockly.setLocale(Ja);
 
   return (
-    <div className="hidden flex flex-col flex-grow md:flex">
+    <div className="flex flex-col flex-grow md:flex">
       <header className="container mx-auto flex flex-col items-start justify-between space-y-2 py-4 sm:flex-row sm:items-center sm:space-y-0 md:h-16">
         <h2 className="text-lg font-semibold">motor_lib Playground</h2>
         <div className="flex flex-row space-x-2">
