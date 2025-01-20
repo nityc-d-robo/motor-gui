@@ -83,9 +83,11 @@ export function PresetRun() {
   function onClickRun() {
     setProgram(javascriptGenerator.workspaceToCode());
   }
-  function onClickExecute() {
-    const interpreter = new Interpreter(program, initApi);
-    interpreter.run();
+  async function onClickExecute() {
+    await new Promise(() => {
+      const interpreter = new Interpreter(program, initApi);
+      interpreter.run();
+    });
   }
   return (
     <Dialog>
