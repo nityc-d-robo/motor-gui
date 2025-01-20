@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator } from 'blockly/javascript';
+import { javascriptGenerator, Order } from 'blockly/javascript';
 import { invoke } from '@tauri-apps/api/core';
 
 export const blmd_blocks = [
@@ -15,8 +15,10 @@ Blockly.Blocks['blmd_speed'] = {
       .appendField(new Blockly.FieldNumber(0, 0, 15), 'address')
       .appendField('の')
       .appendField(new Blockly.FieldNumber(0, 0, 3), 'controller_id')
-      .appendField('番モーターを')
-      .appendField(new Blockly.FieldNumber(0, -16384, 16384), 'velocity')
+      .appendField('番モーターを');
+    this.appendValueInput('velocity')
+      .setCheck('Number');
+    this.appendDummyInput()
       .appendField('RPMで回す');
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
@@ -26,10 +28,10 @@ Blockly.Blocks['blmd_speed'] = {
     this.setColour(225);
   },
 };
-javascriptGenerator.forBlock['blmd_speed'] = function (block) {
+javascriptGenerator.forBlock['blmd_speed'] = function (block, generator) {
   const number_address = block.getFieldValue('address');
   const number_controller_id = block.getFieldValue('controller_id');
-  const number_velocity = block.getFieldValue('velocity');
+  const number_velocity = generator.valueToCode(block, 'velocity', Order.ATOMIC);
   const code = `blmd_speed(${number_address}, ${number_controller_id}, ${number_velocity});\n`;
   return code;
 };

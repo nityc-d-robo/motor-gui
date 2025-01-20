@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator } from 'blockly/javascript';
+import { javascriptGenerator, Order } from 'blockly/javascript';
 import { invoke } from '@tauri-apps/api/core';
 
 export const motor_blocks = [
@@ -16,10 +16,11 @@ Blockly.Blocks['motor_pwm'] = {
   init: function () {
     this.appendDummyInput('NAME1')
       .appendField('MD')
-      .appendField(new Blockly.FieldNumber(0, 0, 15), 'address');
-    this.appendDummyInput('NAME2')
-      .appendField('のモーターを')
-      .appendField(new Blockly.FieldNumber(0, -1000, 1000), 'power')
+      .appendField(new Blockly.FieldNumber(0, 0, 15), 'address')
+      .appendField('のモーターを');
+    this.appendValueInput('power')
+      .setCheck('Number');
+    this.appendDummyInput()
       .appendField('のパワーで回す');
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
@@ -29,9 +30,9 @@ Blockly.Blocks['motor_pwm'] = {
     this.setColour(225);
   },
 };
-javascriptGenerator.forBlock['motor_pwm'] = function (block) {
+javascriptGenerator.forBlock['motor_pwm'] = function (block, generator) {
   const number_address = block.getFieldValue('address');
-  const number_power = block.getFieldValue('power');
+  const number_power = generator.valueToCode(block, 'power', Order.ATOMIC);
   const code = `motor_pwm(${number_address}, ${number_power});\n`;
   return code;
 };

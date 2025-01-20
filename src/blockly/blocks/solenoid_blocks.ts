@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import { javascriptGenerator } from 'blockly/javascript';
+import { javascriptGenerator, Order } from 'blockly/javascript';
 import { invoke } from '@tauri-apps/api/core';
 
 export const solenoid_blocks = [
@@ -18,11 +18,10 @@ Blockly.Blocks['solenoid_state'] = {
         ['0', '0'],
         ['1', '1'],
       ]), 'port')
-      .appendField('を')
-      .appendField(new Blockly.FieldDropdown([
-        ['LOW', '0'],
-        ['HIGH', '1000'],
-      ]), 'state')
+      .appendField('を');
+    this.appendValueInput('state')
+      .setCheck('Number');
+    this.appendDummyInput()
       .appendField('にする');
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
@@ -32,11 +31,11 @@ Blockly.Blocks['solenoid_state'] = {
     this.setColour(225);
   },
 };
-javascriptGenerator.forBlock['solenoid_state'] = function (block) {
+javascriptGenerator.forBlock['solenoid_state'] = function (block, generator) {
   const number_address = block.getFieldValue('address');
   const dropdown_port = block.getFieldValue('port');
-  const dropdown_state = block.getFieldValue('state');
-  const code = `solenoid_state(${number_address}, ${dropdown_port}, ${dropdown_state});\n`;
+  const value_state = generator.valueToCode(block, 'state', Order.ATOMIC);
+  const code = `solenoid_state(${number_address}, ${dropdown_port}, ${value_state});\n`;
   return code;
 };
 export const solenoid_state_wrapper = (address: number, port: number, state: number) => {
