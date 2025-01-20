@@ -83,11 +83,17 @@ export function PresetRun() {
   function onClickRun() {
     setProgram(javascriptGenerator.workspaceToCode());
   }
-  async function onClickExecute() {
-    await new Promise(() => {
-      const interpreter = new Interpreter(program, initApi);
-      interpreter.run();
-    });
+  function onClickExecute() {
+    const interpreter = new Interpreter(program, initApi);
+    const runner = () => {
+      // interpreter.run()は, 内部で非同期関数が実行されているとき一旦Trueを返す
+      // そのため，非同期関数が終わっているかどうか10msごとに呼び出し直すことで確認する
+      const isAsyncRunning = interpreter.run();
+      if (isAsyncRunning) {
+        setTimeout(runner, 10);
+      }
+    };
+    runner();
   }
   return (
     <Dialog>

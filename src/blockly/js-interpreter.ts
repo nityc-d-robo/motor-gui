@@ -19,7 +19,7 @@ function init_blmd_api(interpreter: Interpreter, globalObject: object) {
   interpreter.setProperty(globalObject, 'blmd_speed', interpreter.createNativeFunction(blmd_speed_wrapper));
 }
 function init_control_api(interpreter: Interpreter, globalObject: object) {
-  interpreter.setProperty(globalObject, 'sleep', interpreter.createNativeFunction(sleep_wrapper));
+  interpreter.setProperty(globalObject, 'sleep', interpreter.createAsyncFunction(sleep_wrapper));
 }
 
 let print: (output: string) => void;

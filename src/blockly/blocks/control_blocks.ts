@@ -19,9 +19,6 @@ javascriptGenerator.forBlock['sleep'] = function (block) {
   const code = `sleep(${number_time});\n`;
   return code;
 };
-export const sleep_wrapper = (time: number) => {
-  (function (ms) {
-    const start = Date.now();
-    while (Date.now() - start < ms);
-  })(time * 1000);
+export const sleep_wrapper = (time: number, callback: () => void) => {
+  setTimeout(callback, time * 1000);
 };
