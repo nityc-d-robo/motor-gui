@@ -10,7 +10,10 @@ export const toolbox = {
     {
       kind: 'category',
       name: '制御',
-      contents: preset.control_blocks,
+      contents: preset.control_blocks.concat({
+        kind: 'block',
+        type: 'sleep',
+      }),
     },
     {
       kind: 'category',

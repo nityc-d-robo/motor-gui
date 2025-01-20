@@ -15,7 +15,8 @@ pub fn run() {
             command::motor_pwm,
             command::solenoid_state,
             command::servo_angle,
-            command::blmd_speed
+            command::blmd_speed,
+            command::emergency_stop
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

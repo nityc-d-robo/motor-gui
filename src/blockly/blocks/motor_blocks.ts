@@ -7,6 +7,10 @@ export const motor_blocks = [
     kind: 'block',
     type: 'motor_pwm',
   },
+  {
+    kind: 'block',
+    type: 'emergency_stop',
+  },
 ];
 Blockly.Blocks['motor_pwm'] = {
   init: function () {
@@ -33,4 +37,24 @@ javascriptGenerator.forBlock['motor_pwm'] = function (block) {
 };
 export const motor_pwm_wrapper = (address: number, power: number) => {
   invoke('motor_pwm', { address: address, power: power });
+};
+
+Blockly.Blocks['emergency_stop'] = {
+  init: function () {
+    this.appendDummyInput('NAME1')
+      .appendField('全ての回路を停止する');
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setTooltip('');
+    this.setHelpUrl('');
+    this.setColour(225);
+  },
+};
+javascriptGenerator.forBlock['emergency_stop'] = function () {
+  const code = `emergency_stop();\n`;
+  return code;
+};
+export const emergency_stop_wrapper = () => {
+  invoke('emergency_stop');
 };
